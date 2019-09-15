@@ -1,0 +1,102 @@
+﻿@model SISProject.Models.student
+
+@{
+    ViewBag.Title = "Student";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+
+<style>
+    table {
+        border-collapse: collapse;
+        witdh: 100%;
+        border: 1px solid #tdd;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<div class="panel-group">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Details</div>
+
+        <div class="panel-body">
+            <table class="table table-responsive table-bordered">
+                <tr>
+
+                    <td colspan="2" style="text-align:center">
+                        <img src="@Model.photopath" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Name
+                    </td>
+
+                    <td>
+                        @Model.FirstName &nbsp; @Model.LastName
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Gender)
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Email)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Address)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.EnrollDate)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.EnrollDate)
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.RollNo)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.RollNo)
+                    </td>
+
+                </tr>
+            </table>
+
+           
+        </div>
+    </div>
+</div>
+

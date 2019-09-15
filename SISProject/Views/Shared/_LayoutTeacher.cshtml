@@ -1,0 +1,161 @@
+﻿<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SIS </title>
+
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="/assets/styles/style.min.css">
+
+    <!-- Material Design Icon -->
+    <link rel="stylesheet" href="/assets/fonts/material-design/css/materialdesignicons.css">
+
+    <!-- mCustomScrollbar -->
+    <link rel="stylesheet" href="/assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css">
+
+    <!-- Waves Effect -->
+    <link rel="stylesheet" href="/assets/plugin/waves/waves.min.css">n
+
+    <!-- Sweet Alert -->
+    <!-- Data Tables -->
+    <link rel="stylesheet" href="/assets/plugin/datatables/media/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/plugin/datatables/extensions/Responsive/css/responsive.bootstrap.min.css">
+
+    <!-- Color Picker -->
+</head>
+
+<body>
+    <div class="main-menu">
+        <header class="header">
+            <a href="@Url.Action("Indexs","UplodedFiles")" class="logo">SIS</a>
+            <button type="button" class="button-close fa fa-times js__menu_close"></button>
+        </header>
+        <!-- /.header -->
+        <div class="content">
+
+            <div class="navigation">
+                <ul class="menu js__accordion">
+                    <li class="current">
+                        <a class="waves-effect" href="@Url.Action("Indexs","UplodedFiles")"><i class="menu-icon mdi mdi-briefcase-upload"></i><span>Upload Notes</span></a>
+                    </li>
+                    <li>
+                        <a class="waves-effect" href="@Url.Action("Index","Notices")"><i class="menu-icon mdi mdi-note-multiple"></i><span>Upload Notices</span></a>
+                    </li>
+                    <li>
+                        <a class="waves-effect" href="@Url.Action("TeacherIndex","ClientNotes")"><i class="menu-icon mdi mdi-note-multiple"></i><span>Notices</span></a>
+                    </li>
+                </ul>
+                <!-- /.menu js__accordion -->
+            </div>
+            <!-- /.navigation -->
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.main-menu -->
+
+    <div class="fixed-navbar">
+        <div class="pull-left">
+            <button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
+            <h1 class="page-title">Student Information System</h1>
+            <!-- /.page-title -->
+        </div>
+        <!-- /.pull-left -->
+        <div class="pull-right">
+            <div class="ico-item">
+                <a href="#" class="ico-item fa fa-search js__toggle_open" data-target="#searchform-header"></a>
+                <!-- /.searchform -->
+            </div>
+            <!-- /.ico-item -->
+            <div class="ico-item fa fa-arrows-alt js__full_screen"></div>
+            <!-- /.ico-item fa fa-fa-arrows-alt -->
+            <div class="ico-item toggle-hover js__drop_down ">
+                <span class="fa fa-th js__drop_down_button"></span>
+                <div class="toggle-content">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-github"></i><span class="txt">Github</span></a></li>
+                        <li><a href="#"><i class="fa fa-bitbucket"></i><span class="txt">Bitbucket</span></a></li>
+                        <li><a href="#"><i class="fa fa-slack"></i><span class="txt">Slack</span></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i><span class="txt">Dribbble</span></a></li>
+                        <li><a href="#"><i class="fa fa-amazon"></i><span class="txt">Amazon</span></a></li>
+                        <li><a href="#"><i class="fa fa-dropbox"></i><span class="txt">Dropbox</span></a></li>
+                    </ul>
+                    <a href="#" class="read-more">More</a>
+                </div>
+                <!-- /.toggle-content -->
+            </div>
+            <!-- /.ico-item -->
+            <div class="ico-item">
+                @if (Session["image"] == null)
+                {
+                    <img src="\StuPhoto\noimg.png" alt="" class="ico-img">
+                }
+
+                else
+                {
+                    <img src="@Session["image"].ToString()" alt="" class="ico-img">
+                }
+                    <ul class="sub-ico-item">
+                        <a href="@Url.Action("Teacher","PDetails",new{id=Session["id"] })">view profile</a>
+
+                        <li><a href="@Url.Action("Logout","Account")">Log Out</a></li>
+                    </ul>
+                <!-- /.sub-ico-item -->
+            </div>
+            <!-- /.ico-item -->
+        </div>
+        <!-- /.pull-right -->
+    </div>
+    <!-- /.fixed-navbar -->
+
+    <!-- /#notification-popup -->
+
+
+    <div id="wrapper">
+        <div class="main-content">
+            <div style="min-height:500px">
+                @RenderBody()
+            </div>
+            <!-- /.row small-spacing -->
+            <footer class="footer">
+                <ul class="list-inline">
+                    <li>2019 © SIS.</li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+            </footer>
+        </div>
+        <!-- /.main-content -->
+    </div>
+    <script src="/assets/scripts/jquery.min.js"></script>
+    <script src="/assets/scripts/modernizr.min.js"></script>
+
+    <script src="/assets/plugin/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/assets/plugin/waves/waves.min.js"></script>
+    <!-- Full Screen Plugin -->
+    <script src="/assets/plugin/fullscreen/jquery.fullscreen-min.js"></script>
+
+    <!-- Data Tables -->
+    <script src="~/assets/plugin/nprogress/nprogress.js"></script>
+    <script src="/assets/scripts/main.min.js"></script>
+
+
+    @RenderSection("scripts", false)
+
+    <script>
+        var url = window.location;
+        var element = $('ul.menu a').filter(function () {
+            $('ul.menu a').parent().removeClass('current');
+            return this.href == url;
+        }).parent().addClass('current');
+    </script>
+
+
+
+
+
+

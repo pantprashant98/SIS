@@ -1,0 +1,117 @@
+﻿
+@{ 
+    Layout= "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+
+@model SISProject.ViewModel.NRViewModel
+
+<link href="/BookDemo/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/BookDemo/css/jquery-ui.min.css" rel="stylesheet" type="text/css">
+<link href="/BookDemo/css/animate.css" rel="stylesheet" type="text/css">
+<link href="/BookDemo/css/css-plugin-collections.css" rel="stylesheet" />
+<link id="menuzord-menu-skins" href="/BookDemo/css/menuzord-skins/menuzord-rounded-boxed.css" rel="stylesheet" />
+<!-- CSS | Main style file -->
+<link href="/BookDemo/css/style-main.css" rel="stylesheet" type="text/css">
+<!-- CSS | Preloader Styles -->
+<link href="/BookDemo/css/preloader.css" rel="stylesheet" type="text/css">
+<!-- CSS | Custom Margin Padding Collection -->
+<link href="/BookDemo/css/custom-bootstrap-margin-padding.css" rel="stylesheet" type="text/css">
+<!-- CSS | Responsive media queries -->
+<link href="/BookDemo/css/responsive.css" rel="stylesheet" type="text/css">
+<!-- CSS | Style css. This is the file where you can place your own custom css code. Just uncomment it and use it. -->
+<!-- <link href="css/style.css" rel="stylesheet" type="text/css"> -->
+<!-- CSS | Theme Color -->
+<link href="/BookDemo/css/colors/theme-skin-color-set-1.css" rel="stylesheet" type="text/css">
+
+<!-- external javascripts -->
+<script src="/BookDemo/js/jquery-2.2.4.min.js"></script>
+<script src="/BookDemo/js/jquery-ui.min.js"></script>
+<script src="/BookDemo/js/bootstrap.min.js"></script>
+<!-- JS | jquery plugin collection for this theme -->
+<script src="/BookDemo/js/jquery-plugin-collection.js"></script>
+<style>
+    section > .container, section > .container-fluid {
+        padding-top: 0px;
+        padding-bottom: 70px;
+    }
+</style>
+@if (ViewBag.message == null)
+{
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 blog-pull-right">
+                <div class="row">
+                    <h1>Recomended For You</h1>
+                    @foreach (var item in Model.RecomendedArticles)
+                    {
+                        <div class="col-sm-6 col-md-4">
+                            <div class="service-block bg-white">
+                                <div class="thumb">
+                                    <img alt="featured project" src="@item.imagepath" class="img-fullwidth">
+                                </div>
+                                <div class="content text-left flip p-25 pt-0">
+                                    <h4 class="line-bottom mb-10">@item.Name </h4>
+                                    <p style="white-space: nowrap; width: 100%; overflow: hidden;text-overflow:ellipsis;">@item.Description</p>
+                                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="@Url.Action("Details", "Notes", new { id = item.Id })">view details</a>
+                                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="@Url.Action("Download", "Notes", new { Path = item.Filename, id = item.Id })">
+                                        Download</a>
+                                    <input  onclick="this.value='@item.Rating'" type="button" value="Show Rating" id="myButton1" class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" />
+                                  
+
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-11">
+                <div class="row">
+                    @if (ViewBag.message == null)
+                    {
+                    <h1>Recently  Uploded Article</h1>
+                    }
+                    @if (ViewBag.messagea == null)
+                    {
+                        foreach (var item in Model.uplodedFiles)
+                        {
+                        <div class="col-sm-6 col-md-4">
+                            <div class="service-block bg-white">
+                                <div class="thumb">
+
+                                    <img alt="featured project" src="@item.imagepath" class="img-fullwidth">
+
+
+                                </div>
+                                <div class="content text-left flip p-25 pt-0">
+                                    <h4 class="line-bottom mb-10">@item.Name </h4>
+                                    <p style="white-space: nowrap; width: 100%; overflow: hidden;text-overflow:ellipsis;">@item.Description</p>
+                                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="@Url.Action("Details", "Notes", new { id = item.Id })">view details</a>
+                                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="@Url.Action("Download", "Notes", new { Path = item.Filename, id = item.Id })">
+                                        Download
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    }
+                    else
+                    {
+                        <h1>@ViewBag.messagea</h1>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
